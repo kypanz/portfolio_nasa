@@ -4,7 +4,6 @@ import { Grid, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import spaceimg from '../../images/background-space.jpg';
 import DatePicker from '../material/DatePicker';
-import translate from 'translate-google';
 
 const useStyles = makeStyles((theme)=>({
     mainGrid:{
@@ -29,7 +28,6 @@ const Home = (props) => {
     }
 
     const search = async () => {
-        // crea consulta por fecha seleccionada || create a request with the selected date
         let r = await axios({
             method:'get',
             url:'https://api.nasa.gov/planetary/apod?api_key='+apikey,
@@ -38,12 +36,7 @@ const Home = (props) => {
             }
         })
         console.log(r);
-        translate('I speak Chinese', {to: 'zh-cn'}).then(res => {
-            console.log(res)
-        }).catch(err => {
-            console.error(err)
-        })
-        //setInfoApod(r.data)
+        setInfoApod(r.data)
     }
 
     const outByType = (option) => {
@@ -60,11 +53,11 @@ const Home = (props) => {
             <>
                 <Grid item xs={12} style={{padding:'30px'}} className={classes.mainGrid}>
                     <Grid item xs={11} style={{margin:'auto',background:'rgb(0 0 0 / 29%)',color:'white',padding:'15px',borderRadius:'10px',marginBottom:'35px'}}>
-                        <Grid item xs={12}> <h1> ¿ Que capturo la NASA en esta fecha ? </h1> </Grid>
+                        <Grid item xs={12}> <h1> ¿ What did NASA capture on this date? </h1> </Grid>
                         <Grid item xs={5} style={{margin:'auto',paddingBottom:'25px'}} container>
                             <Grid item xs={5} className={classes.box1}> <DatePicker onChangeDate={onChangeDate} /> </Grid>
                             <Grid item xs={5} className={classes.box1}> 
-                                <Button variant="contained" color="secondary" style={{marginTop:'5px',textTransform:'none'}} onClick={search}> Buscar </Button>
+                                <Button variant="contained" color="secondary" style={{marginTop:'5px',textTransform:'none'}} onClick={search}> Search </Button>
                             </Grid>
                         </Grid>
                     </Grid>
