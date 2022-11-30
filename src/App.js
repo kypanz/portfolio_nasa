@@ -1,15 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
 
 // pages
 import Home from './components/pages/Home'
 
-const apikey = "krVQycQXx03rmSSNdsOutc9DvAzdrX7IL6SnOy4B";
+require('dotenv').config();
+
+console.log('Api Key NASA => ', process.env.REACT_APP_NASA_KEY);
 
 function App() {
   return (
     <div className="App">
-      <Home apiKey={apikey}/>
+      <Home apiKey={process.env.REACT_APP_NASA_KEY}/>
     </div>
   );
 }
